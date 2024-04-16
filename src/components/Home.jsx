@@ -3,6 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { Experience } from "./Experience";
 import CameraLogger from "../helper/Cameralogger";
+import { Leva } from "leva";
 
 function Home() {
   return (
@@ -25,6 +26,7 @@ function Home() {
           </Suspense>
           {/* <axesHelper /> */}
         </Canvas>
+          {/* <Leva /> */}
       </div>
     </div>
   );

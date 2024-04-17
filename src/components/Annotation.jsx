@@ -5,8 +5,7 @@ import { extend, useFrame, useThree } from "@react-three/fiber";
 import gsap from "gsap";
 import { easing, geometry } from "maath";
 import { useEffect, useRef, useState } from "react";
-import { Euler, MathUtils } from "three";
-import { useControls } from 'leva';
+import { useControls } from "leva";
 
 export default function Annotation({ roof, children, ...props }) {
   extend(geometry);
@@ -16,65 +15,107 @@ export default function Annotation({ roof, children, ...props }) {
   const htmlRef = useRef();
   const [isAnimating, setIsAnimating] = useState(false);
 
+  // const [positionX, setpositionX] = useState(camera.position.x);
+  // const [positionY, setpositionY] = useState(camera.position.y);
+  // const [positionZ, setpositionZ] = useState(camera.position.z);
+
   // const [rotationX, setRotationX] = useState(camera.rotation.x);
   // const [rotationY, setRotationY] = useState(camera.rotation.y);
   // const [rotationZ, setRotationZ] = useState(camera.rotation.z);
 
-  // useControls('Camera Rotation', {
-  //   rotationX: { value: rotationX, onChange: setRotationX, min: -Math.PI*2, max: Math.PI*2 },
-  //   rotationY: { value: rotationY, onChange: setRotationY, min: -Math.PI*2, max: Math.PI*2 },
-  //   rotationZ: { value: rotationZ, onChange: setRotationZ, min: -Math.PI*2, max: Math.PI*2 },
+  // useControls("Camera Rotation", {
+  //   rotationX: {
+  //     value: rotationX,
+  //     onChange: setRotationX,
+  //     step: 0.1,
+
+  //     min: -5,
+  //     max: 5,
+  //   },
+  //   rotationY: {
+  //     value: rotationY,
+  //     onChange: setRotationY,
+  //     step: 0.1,
+
+  //     min: -5,
+  //     max: 5,
+  //   },
+  //   rotationZ: {
+  //     value: rotationZ,
+  //     onChange: setRotationZ,
+  //     step: 0.1,
+
+  //     min: -5,
+  //     max: 5,
+  //   },
+  //   positionX: {
+  //     value: positionX,
+  //     onChange: setpositionX,
+  //     step: 0.01,
+  //     min: -50,
+  //     max: 50,
+  //   },
+  //   positionY: {
+  //     value: positionY,
+  //     onChange: setpositionY,
+  //     step: 0.01,
+
+  //     min: -50,
+  //     max: 50,
+  //     joystick: "invertY",
+  //   },
+  //   positionZ: {
+  //     value: positionZ,
+  //     onChange: setpositionZ,
+  //     step: 0.01,
+
+  //     min: -50,
+  //     max: 50,
+  //   },
   // });
 
-  // useEffect(() => {
-  //   camera.rotation.set(rotationX, rotationY, rotationZ);
-  // }, [rotationX, rotationY, rotationZ]);
-
-  
-
-
-  useFrame((state,delta)=>{
-    // console.log(camera.position)
-    // console.log(camera.rotation)
-    // camera.rotation.set(rotationX, rotationY, rotationZ);
-
-  })
-//   2.28, 0.3 ,0.82
-
+  // useFrame((state, delta) => {
+  //   // console.log(camera.position)
+  //   // console.log(camera.rotation)
+  //   // camera.rotation.set(rotationX, rotationY, rotationZ);
+  //   // camera.position.set(positionX, positionY, positionZ);
+  // });
   useGSAP(() => {
     if (isAnimating) {
       gsap.to(camera.position, {
-        x: 2.16,
-        y: 0.26,
-        z: 0.30,
+        x: 0.4,
+        y: 0.2,
+        z: -0.39,
         duration: 2,
         ease: "linear",
       });
-    //!
+      //!
       gsap.to(camera.rotation, {
-        x: -0.72,
-        y: 1.3,
-        z: 0.70,
+        x: -2.6,
+        y: 1,
+        z: 2.7,
         duration: 2,
         ease: "linear",
-        
-      })
-    //!
+      });
+      //!
 
       gsap.to(top.position, {
         y: 2,
-        duration: 4,
+        duration: 2,
       });
+
       // gsap.to(htmlRef.current, {
       //   display: "none",
       //   duration: 1,
       //   ease: "linear",
       // });
     }
-    setIsAnimating(false);
+
+    // setIsAnimating(false);
   }, [isAnimating]);
+
   const startAnimation = () => {
-    setIsAnimating(true);
+    setIsAnimating((prev) => !prev);
   };
 
   return (

@@ -8,7 +8,7 @@ import { Leva } from "leva";
 function Home() {
   return (
     <div className="w-full h-screen fixed ">
-      <nav className="w-full p-6 mb-10 shadow flex items-center justify-between font-semibold ">
+      <nav className="w-full p-6 mb-6 lg:mb-10 shadow flex items-center justify-between font-semibold ">
         <h1 className="text-2xl">NMH</h1>
         <ul className="flex items-start gap-6">
           <li>Home</li>
@@ -16,17 +16,17 @@ function Home() {
           <li>CONTACT</li>
         </ul>
       </nav>
-      <div className=" mx-6 h-[40rem] rounded-2xl overflow-hidden">
-        <Canvas shadows camera={{ position: [3.96, 0.64 ,2.08], fov: 30 }}>
+      <div className=" lg:mx-6 h-[500px] lg:h-[45rem] rounded-2xl overflow-hidden">
+        <Canvas shadows camera={{ position: [2.03, 0.33, 1.07], fov: 30 }}>
           <color attach="background" args={["#87CEEB"]} />
           <CameraLogger event="mousedown" />
           <Environment preset="city" />
           <Suspense fallback={null}>
-          <Experience />
+            <Experience />
           </Suspense>
           {/* <axesHelper /> */}
         </Canvas>
-          {/* <Leva /> */}
+        <Leva />
       </div>
     </div>
   );
